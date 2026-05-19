@@ -1,0 +1,83 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---------------------------------------------------------------------------
+# PRIVATE ASSETS — kept locally, NOT committed to git
+# ---------------------------------------------------------------------------
+# These image files contain personal data (NIK, customer names, customer faces
+# without published consent). They are referenced in the codebase for layout
+# completeness but are never RENDERED on the live site (the legalitas page
+# uses canShowScan() helper to hide them, hampers page only uses safe-named
+# files, teras page only uses storefront + founder portrait).
+#
+# To work with these locally for development, keep them in public/image/.
+# They will not be pushed to GitHub or deployed to Vercel.
+# ---------------------------------------------------------------------------
+
+# Legal documents with personal NIK + email + signature
+public/image/slide-06-legalitas-siumk-2017.jpeg
+public/image/slide-07-legalitas-nib-2020.jpeg
+public/image/legal-nib-rizal-2020.jpeg
+public/image/legal-surat-keterangan-usaha-mikro-2024.jpeg
+
+# Hampers with real customer names on cards
+public/image/hampers-hbd-pak-jasman.jpeg
+public/image/hampers-hbd-pak-acun-bni.jpeg
+public/image/hampers-hbd-display-kemasan.jpeg
+public/image/hampers-hbd-display-kemasan-alt.jpeg
+
+# Outlet photos with identifiable customer faces (consent pending)
+public/image/teras-mang-jai-keluarga-makan.jpeg
+public/image/teras-mang-jai-grup-makan-selfie.jpeg
+public/image/teras-mang-jai-meeting-pria.jpeg
+public/image/teras-mang-jai-grup-menu-board.jpeg
+
+# Social-proof screenshots from third-party accounts (use only with attribution)
+public/image/social-ig-plut-kumkm-opening.jpeg
+public/image/social-ig-metamorphozelv-pempek.jpeg
+public/image/social-ig-metamorphozelv-makan.jpeg
+public/image/social-ig-mangjaipempek788-repost.jpeg
+public/image/social-wa-ucapan-pembukaan-teras.jpeg

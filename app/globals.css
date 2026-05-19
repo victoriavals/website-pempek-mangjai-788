@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-bg font-body text-brand-text antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  ::selection {
+    @apply bg-brand-primary/20 text-brand-text;
+  }
+
+  /* Keyboard focus ring */
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid theme('colors.brand.primary');
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Skip-to-content link */
+  .skip-link {
+    @apply absolute left-3 top-3 z-50 -translate-y-20 rounded-md bg-brand-primary px-4 py-2 text-sm font-semibold text-white shadow-lg transition-transform;
+  }
+  .skip-link:focus-visible {
+    @apply translate-y-0;
+  }
+
+  /* Editorial display heading — Fraunces variable */
+  .display {
+    @apply font-display tracking-tight-display;
+    font-feature-settings: 'ss01', 'ss03';
+    font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 0;
+  }
+
+  .display-italic {
+    @apply font-display italic tracking-wide-display;
+    font-feature-settings: 'ss02';
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  }
+
+  /* Eyebrow caption (small uppercase before headings) */
+  .eyebrow {
+    @apply inline-block text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-primary;
+  }
+
+  /* Drop cap for editorial body */
+  .drop-cap::first-letter {
+    @apply float-left mr-3 mt-1 font-display text-7xl font-bold leading-[0.85] text-brand-primary;
+  }
+
+  /* Hairline divider with gold accent */
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-brand-accent to-transparent;
+  }
+
+  .hairline-short {
+    @apply mx-auto h-px w-16 bg-brand-accent;
+  }
+
+  /* Editorial section padding */
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .section-pad-sm {
+    @apply py-14 md:py-20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Photographic warm overlay for hero images */
+  .photo-warm {
+    background: linear-gradient(
+      to top,
+      rgba(26, 24, 21, 0.55) 0%,
+      rgba(26, 24, 21, 0.15) 40%,
+      rgba(26, 24, 21, 0) 70%
+    );
+  }
+}
+
+/* Native <dialog> */
+dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+dialog::backdrop {
+  background-color: rgba(26, 24, 21, 0.75);
+  backdrop-filter: blur(6px);
+}
+
+dialog[open] {
+  animation: dialog-fade-in 220ms ease-out;
+}
+
+@keyframes dialog-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
