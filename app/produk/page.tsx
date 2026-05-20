@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { PRODUCTS } from '@/data/products';
+import { getProducts } from '@/data/products';
 import { ProductCatalog } from './ProductCatalog';
 
 export const metadata: Metadata = {
@@ -8,7 +8,8 @@ export const metadata: Metadata = {
     '13 varian pempek halal dari ikan tenggiri Kepri. Kapal Selam, Lenjer, Adaan, Keriting, Pistel, Kulit & lainnya. Mulai Rp 25.000/bungkus. Pesan via WhatsApp.',
 };
 
-export default function ProdukPage() {
+export default async function ProdukPage() {
+  const products = await getProducts();
   return (
     <>
       <section className="bg-brand-bg">
@@ -29,7 +30,7 @@ export default function ProdukPage() {
       </section>
 
       <section className="container pb-24">
-        <ProductCatalog products={PRODUCTS} />
+        <ProductCatalog products={products} />
       </section>
     </>
   );
