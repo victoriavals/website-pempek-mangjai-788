@@ -10,7 +10,7 @@ export type TestimoniMedia =
   | { type: 'video'; src: string; poster?: string }
   | { type: 'youtube'; videoId: string; poster?: string }
   | { type: 'tiktok'; videoId: string; username: string; poster?: string }
-  | { type: 'instagram'; postId: string; poster?: string };
+  | { type: 'instagram'; postId: string; kind?: 'post' | 'reel'; poster?: string };
 
 export interface Testimoni {
   id: string;
@@ -97,6 +97,52 @@ export const TESTIMONI: Testimoni[] = [
     platform: 'Instagram Story',
     author: '@jejebalqis',
     excerpt: 'Indahnyaa... @mangjaipempek788',
+  },
+  {
+    id: 'ig-reel-borong-sold-out',
+    media: {
+      type: 'instagram',
+      postId: 'DFjlct6q4j-',
+      kind: 'reel',
+    },
+    source: 'instagram',
+    platform: 'Instagram Reel',
+    author: '@mangjaipempek788',
+    excerpt:
+      'MasyaAllah tabarokallah, terima kasih sudah borong di Pempek Mang Jai 788 — H-3 pempek sudah sold out jam 5 sore!',
+    fullQuote:
+      'MasyaAllah tabarokallah, terima kasih ya teh sudah borong brutal di Pempek Mang Jai 788. H-3 Pempek Mang Jai sold out jam 5 sore. Semoga H-4 ekspedisi datang pagi.',
+  },
+  {
+    id: 'ig-reel-gemar-ikan-2024',
+    media: {
+      type: 'instagram',
+      postId: 'C776WstAm_y',
+      kind: 'reel',
+    },
+    source: 'instagram',
+    platform: 'Instagram Reel',
+    author: 'Sosialisasi Gemar Ikan',
+    excerpt:
+      'Alhamdulillah, Mang Jai Pempek bisa membersamai kegiatan sosialisasi Gemar Ikan. Ibu sehat, anak tumbuh cerdas dan kuat.',
+    fullQuote:
+      'Terima kasih atas kepercayaan dan kesempatan. Alhamdulillah, Mang Jai Pempek bisa membersamai kegiatan sosialisasi Gemar Ikan 7 Juni 2024. Ibu sehat, anak tumbuh cerdas dan kuat.',
+    date: '7 Juni 2024',
+  },
+  {
+    id: 'ig-reel-perjalanan-reseller',
+    media: {
+      type: 'instagram',
+      postId: 'CvcOHGugAve',
+      kind: 'reel',
+    },
+    source: 'instagram',
+    platform: 'Instagram Reel',
+    author: '@mangjaipempek788',
+    excerpt:
+      'Perjalanan setiap orang berbeda-beda. Jika dijalani dengan senang hati dan ikhlas, Allah akan memberi yang tak terduga.',
+    fullQuote:
+      'Perjalanan seseorang berbeda-beda sesuai takdir. Ujian hidup silih berganti, namun yang pasti jika dijalani dengan senang hati dan ikhlas, Allah akan memberikan yang tak terduga. #resellerpempekmangjai788 #pempekbatam #publicspeaking',
   },
 
   // ===== TIKTOK =====
