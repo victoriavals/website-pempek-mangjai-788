@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getProducts } from '@/data/products';
 import { CheckoutClient } from './CheckoutClient';
 
 export const metadata: Metadata = {
@@ -7,7 +8,11 @@ export const metadata: Metadata = {
     'Review keranjang Anda dan kirim pesanan ke WhatsApp Pempek 788 Mang Jai. Estimasi total, catatan, dan info pengiriman.',
 };
 
-export default function BeliPage() {
+export default async function BeliPage() {
+  // Fetch live products (with current prices + stock) so checkout always
+  // reflects the latest Google Sheets data, not snapshots from add-to-cart time.
+  const products = await getProducts();
+
   return (
     <>
       <section className="bg-brand-bg">
@@ -26,7 +31,7 @@ export default function BeliPage() {
         </div>
       </section>
 
-      <CheckoutClient />
+      <CheckoutClient products={products} />
     </>
   );
 }
