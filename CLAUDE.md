@@ -115,6 +115,17 @@ The site uses an **editorial premium DTC aesthetic** inspired by Brightland (Cal
 - **`<ParallaxFade>`** — image-scale fade-in for hero photography
 - All primitives respect `prefers-reduced-motion` automatically via global CSS rule.
 
+## Versioning (IMPORTANT — bump on every change)
+
+The site shows its version in the footer (`Versi situs vX.Y.Z`). Source of truth: [lib/version.ts](lib/version.ts) (`APP_VERSION` + `APP_VERSION_DATE`).
+
+**On every meaningful code/content change, you MUST:**
+1. Bump `APP_VERSION` in `lib/version.ts` (and update `APP_VERSION_DATE` to today)
+2. Sync the same number in `package.json` `"version"`
+3. Add an entry to [CHANGELOG.md](CHANGELOG.md)
+
+Semver scheme: **PATCH** (x.y.Z) = copy/data tweaks & small fixes · **MINOR** (x.Y.0) = new section/feature · **MAJOR** (X.0.0) = full redesign/breaking change. Current baseline: **1.0.0** (2026-05-20). This is a standing instruction from the owner — do not skip it.
+
 ## Key conventions
 
 - **Brand colors** live in Tailwind under `brand.*` — never hardcode hex.
