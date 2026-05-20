@@ -38,6 +38,17 @@ const ORDER: TestimoniSource[] = [
 ];
 
 export default function TestimoniPage() {
+  const voucherWaUrl = buildSimpleWaUrl(
+    [
+      'Halo Pempek 788 Mang Jai 👋',
+      'Saya mau berbagi testimoni & klaim voucher diskon 10%.',
+      'Saya sudah tag @mangjaipempek788 di Instagram/Facebook.',
+      'Ini link/screenshot postingannya: [tempel di sini]',
+      '',
+      'Terima kasih!',
+    ].join('\n')
+  );
+
   return (
     <>
       {/* HERO */}
@@ -129,12 +140,29 @@ export default function TestimoniPage() {
               <span className="display-italic text-brand-accent">bersama kami.</span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base text-white/80">
-              Tag <strong>@mangjaipempek788</strong> di Instagram atau Facebook —
-              kami akan repost cerita Anda. Atau kirim langsung via WhatsApp.
+              Tag <strong>@mangjaipempek788</strong> di Instagram atau Facebook
+              saat menikmati pempek kami — cerita Anda kami repost, dan Anda
+              dapat voucher diskon 10%. Belum sempat posting? Kirim langsung via
+              WhatsApp.
             </p>
+
+            <div className="mx-auto mt-8 flex max-w-md items-center gap-4 rounded-2xl border border-brand-accent/40 bg-brand-accent/10 p-5 text-left">
+              <span
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-accent text-2xl"
+                aria-hidden="true"
+              >
+                🎁
+              </span>
+              <p className="text-sm leading-relaxed text-white/90">
+                <strong className="text-brand-accent">Voucher diskon 10%</strong>{' '}
+                untuk pembelian berikutnya — tag kami, lalu tunjukkan postingan
+                Anda saat pesan via WhatsApp untuk klaim.
+              </p>
+            </div>
+
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href={buildSimpleWaUrl()}
+                href={voucherWaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-bg px-8 py-4 text-sm font-semibold text-brand-text transition-colors hover:bg-brand-accent"
