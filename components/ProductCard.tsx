@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import type { Product } from '@/data/types';
 import { useCart } from '@/lib/cart';
 import { formatRupiah } from '@/lib/format';
+import { STOCK_LOW_THRESHOLD } from '@/lib/sheets';
 
 interface ProductCardProps {
   product: Product;
@@ -22,17 +23,33 @@ const TAG_STYLES: Record<string, string> = {
     'border border-brand-accent/60 bg-brand-accent/10 text-brand-text',
 };
 
+type StockBadge =
+  | { kind: 'habis' }
+  | { kind: 'terbatas'; qty: number }
+  | null;
+
+function deriveStockBadge(stockQty: number | null): StockBadge {
+  if (stockQty === null) return null;
+  if (stockQty === 0) return { kind: 'habis' };
+  if (stockQty <= STOCK_LOW_THRESHOLD) return { kind: 'terbatas', qty: stockQty };
+  return null;
+}
+
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
 
+  const isHubungiKami = product.harga_per_pack === null;
+  const stockBadge = deriveStockBadge(product.stock_qty);
+  const isHabis = stockBadge?.kind === 'habis';
+
   const handleAdd = () => {
+    if (isHabis) return;
     addItem(product.id);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1600);
   };
 
-  const isHubungiKami = product.harga_per_pack === null;
   const featuredTag = product.tags?.find(
     (t) => t === 'Best Seller' || t === 'Premium' || t === 'Hubungi Kami'
   );
@@ -55,9 +72,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           alt={`Kemasan ${product.nama}`}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className={`object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] ${
+            isHabis ? 'opacity-60 grayscale' : ''
+          }`}
         />
 
+        {/* Featured tag (top-left) */}
         {featuredTag && (
           <div className="absolute left-3 top-3">
             <span
@@ -67,6 +87,21 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             >
               {featuredTag}
             </span>
+          </div>
+        )}
+
+        {/* Stock badge (top-right) */}
+        {stockBadge && (
+          <div className="absolute right-3 top-3">
+            {stockBadge.kind === 'habis' ? (
+              <span className="inline-flex rounded-full bg-brand-text px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-bg">
+                Habis
+              </span>
+            ) : (
+              <span className="inline-flex rounded-full bg-brand-secondary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+                Sisa {stockBadge.qty}
+              </span>
+            )}
           </div>
         )}
       </div>
@@ -99,14 +134,25 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <button
             type="button"
             onClick={handleAdd}
+            disabled={isHabis}
+            aria-disabled={isHabis}
+            title={isHabis ? 'Sedang habis — konfirmasi via WhatsApp' : undefined}
             className={`inline-flex h-10 items-center gap-1.5 rounded-full px-4 text-xs font-semibold transition-all ${
-              added
-                ? 'bg-brand-primary text-white'
-                : 'border border-brand-text bg-transparent text-brand-text hover:border-brand-primary hover:bg-brand-primary hover:text-white'
+              isHabis
+                ? 'cursor-not-allowed border border-brand-border bg-brand-bg-soft text-brand-text-muted'
+                : added
+                  ? 'bg-brand-primary text-white'
+                  : 'border border-brand-text bg-transparent text-brand-text hover:border-brand-primary hover:bg-brand-primary hover:text-white'
             }`}
-            aria-label={`Tambah ${product.nama} ke keranjang`}
+            aria-label={
+              isHabis
+                ? `${product.nama} sedang habis`
+                : `Tambah ${product.nama} ke keranjang`
+            }
           >
-            {added ? (
+            {isHabis ? (
+              'Habis'
+            ) : added ? (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
