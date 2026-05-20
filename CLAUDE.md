@@ -47,7 +47,8 @@ No tests configured yet (out of MVP scope).
   - **Multi-media support**: `TestimoniMedia` discriminated union with 5 types — `image`, `video` (self-host MP4), `youtube`, `tiktok`, `instagram` (embeds via iframe, no SDK needed). Cards show source badge + play button overlay for video-like media; modal lightbox renders appropriate player.
   - Data: `data/testimoni.ts` (typed `Testimoni[]` with `media`, `source`, `platform`, `author`, `excerpt`, `fullQuote`, `highlight`). Sources: 2 press, 3 instagram, 8 tiktok (@mangjai788channel), 2 facebook, 4 whatsapp.
   - Components: `TestimoniCard` (portrait 9:16 with source badge + dark gradient caption) + `TestimoniGrid` (client, native `<dialog>` lightbox with media+quote two-column layout, "Buka di TikTok" external link for TikTok entries)
-  - Files: 11 image testimoni live in `public/image/testimoni/` with semantic slugs (`press-*`, `ig-*`, `fb-*`, `wa-*`); video testimoni use TikTok iframe embed (`https://www.tiktok.com/embed/v2/{videoId}`) — no local files.
+  - Files: 11 image testimoni + 8 TikTok poster thumbnails live in `public/image/testimoni/` with semantic slugs (`press-*`, `ig-*`, `fb-*`, `wa-*`, `poster-tiktok-*`); video testimoni use TikTok iframe embed (`https://www.tiktok.com/embed/v2/{videoId}`) for playback, locally-hosted JPEG posters for card previews.
+  - **TikTok poster pipeline**: download via `oembed` once with PowerShell — fetch `https://www.tiktok.com/oembed?url={video_url}` → grab `thumbnail_url` → `Invoke-WebRequest` to local file. Posters are static after download (committed to repo); rerun script if you add new videos.
   - Nav: "Testimoni" added to header nav (between Teras & Legalitas) + footer + sitemap
 - **Sprint 5 ✅**: **total UI/UX redesign** to Brightland-inspired editorial aesthetic. Changes:
   - **Design tokens**: new color palette (cream/gold/forest/brick) in `tailwind.config.ts`

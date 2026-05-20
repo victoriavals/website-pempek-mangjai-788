@@ -113,12 +113,16 @@ function CardMedia({
   }
 
   // Video-like media (tiktok / youtube / instagram / mp4) — show poster or styled placeholder
+  // `unoptimized` skips Next.js Image transformation since posters are already
+  // pre-sized to ~540×960 and small (<100KB). Faster in dev, saves Vercel image
+  // optimization quota in production.
   if (media.poster) {
     return (
       <Image
         src={media.poster}
         alt={`Testimoni ${platform}`}
         fill
+        unoptimized
         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 80vw"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
