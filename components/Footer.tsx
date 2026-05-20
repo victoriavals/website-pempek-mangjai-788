@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ALAMAT, BRAND, JAM_BUKA, KONTAK, SOSIAL } from '@/lib/constants';
 import { CERTIFICATIONS } from '@/data/certifications';
+import { APP_VERSION } from '@/lib/version';
 
 const SOSIAL_LIST = [
   { ...SOSIAL.instagram, label: 'Instagram' },
@@ -157,6 +158,10 @@ export function Footer() {
             ))}
           </ul>
         </div>
+
+        <p className="mt-6 text-center text-[11px] tracking-wider text-brand-bg/35">
+          Versi situs v{APP_VERSION}
+        </p>
       </div>
     </footer>
   );
