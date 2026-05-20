@@ -14,21 +14,45 @@ import {
   resolveCart,
 } from '@/lib/whatsapp';
 import { KONTAK } from '@/lib/constants';
+import type { Product } from '@/data/types';
 
-export function CheckoutClient() {
+interface CheckoutClientProps {
+  // Live products from server (Sheets-backed via getProducts()). Price & stock
+  // reflect current Sheets state at the time /beli was rendered (ISR cached
+  // up to 5 minutes).
+  products: Product[];
+}
+
+export function CheckoutClient({ products }: CheckoutClientProps) {
   const { cart, hydrated, incrementQty, decrementQty, removeItem, clearCart } =
     useCart();
   const [note, setNote] = useState('');
 
-  const resolved = useMemo(() => resolveCart(cart.items), [cart.items]);
-  const subtotal = useMemo(() => calcSubtotal(cart.items), [cart.items]);
-  const unpriced = useMemo(() => countUnpriced(cart.items), [cart.items]);
+  // Build lookup Map once per render so resolveCart/calcSubtotal/etc. use
+  // live server data instead of falling back to DEFAULT_INVENTORY.
+  const productsById = useMemo(
+    () => new Map(products.map((p) => [p.id, p])),
+    [products]
+  );
+
+  const resolved = useMemo(
+    () => resolveCart(cart.items, productsById),
+    [cart.items, productsById]
+  );
+  const subtotal = useMemo(
+    () => calcSubtotal(cart.items, productsById),
+    [cart.items, productsById]
+  );
+  const unpriced = useMemo(
+    () => countUnpriced(cart.items, productsById),
+    [cart.items, productsById]
+  );
 
   const waUrl = useMemo(() => {
     if (cart.items.length === 0) return '#';
-    const msg = buildWhatsAppMessage(cart.items, note);
+    const msg = buildWhatsAppMessage(cart.items, note, productsById);
     return buildWhatsAppUrl(msg);
-  }, [cart.items, note]);
+  }, [cart.items, note, productsById]);
 
   if (!hydrated) {
     return (
