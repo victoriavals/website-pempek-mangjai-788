@@ -111,6 +111,7 @@ export function TestimoniGrid({ items, columns = 3 }: TestimoniGridProps) {
               ) : null}
 
               <TikTokDirectLink media={active.media} />
+              <InstagramDirectLink media={active.media} />
             </div>
           </div>
         )}
@@ -165,16 +166,19 @@ function ModalMedia({
         />
       );
 
-    case 'instagram':
+    case 'instagram': {
+      const igPath = media.kind === 'reel' ? 'reel' : 'p';
       return (
         <iframe
           title={`Instagram ${platform}`}
-          src={`https://www.instagram.com/p/${media.postId}/embed/`}
+          src={`https://www.instagram.com/${igPath}/${media.postId}/embed/`}
           allowFullScreen
           referrerPolicy="strict-origin-when-cross-origin"
           className="aspect-[9/14] w-full max-w-[440px] border-0"
+          scrolling="no"
         />
       );
+    }
 
     case 'video':
       return (
@@ -202,6 +206,37 @@ function TikTokDirectLink({ media }: { media: TestimoniMedia }) {
       className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-primary hover:gap-3"
     >
       Buka di TikTok
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-3.5 w-3.5"
+        aria-hidden="true"
+      >
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        <polyline points="15 3 21 3 21 9" />
+        <line x1="10" y1="14" x2="21" y2="3" />
+      </svg>
+    </a>
+  );
+}
+
+function InstagramDirectLink({ media }: { media: TestimoniMedia }) {
+  if (media.type !== 'instagram') return null;
+  const path = media.kind === 'reel' ? 'reel' : 'p';
+  const url = `https://www.instagram.com/${path}/${media.postId}/`;
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-primary hover:gap-3"
+    >
+      Buka di Instagram
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
