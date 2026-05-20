@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { PRODUCTS } from '@/data/products';
+import { getProducts } from '@/data/products';
 import { CERTIFICATIONS } from '@/data/certifications';
 import { RETAIL_PARTNERS } from '@/data/retail';
 import { TESTIMONI_HIGHLIGHTS } from '@/data/testimoni';
@@ -10,10 +10,6 @@ import { HomepageJsonLd } from '@/components/JsonLd';
 import { TestimoniGrid } from '@/components/TestimoniGrid';
 import { buildSimpleWaUrl } from '@/lib/whatsapp';
 import { FadeUp, RevealWords, ParallaxFade } from '@/components/motion';
-
-const BEST_SELLERS = PRODUCTS.filter((p) =>
-  p.tags?.includes('Best Seller')
-);
 
 const VALUES = [
   {
@@ -38,7 +34,10 @@ const VALUES = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getProducts();
+  const bestSellers = products.filter((p) => p.tags?.includes('Best Seller'));
+
   return (
     <>
       <HomepageJsonLd />
@@ -205,7 +204,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 md:gap-x-10">
-          {BEST_SELLERS.map((p, i) => (
+          {bestSellers.map((p, i) => (
             <ProductCard key={p.id} product={p} index={i} />
           ))}
         </div>
