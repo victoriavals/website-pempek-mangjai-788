@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BRAND, KONTAK } from '@/lib/constants';
 import { buildSimpleWaUrl } from '@/lib/whatsapp';
+import { OUTLETS_BY_CHAIN, RETAIL_OUTLETS } from '@/data/retail';
 import { FadeUp, ParallaxFade, StaggerItem, StaggerList } from '@/components/motion';
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ const PERALATAN = [
   { nama: 'Sealer', qty: 2 },
   { nama: 'Blender', qty: 2 },
   { nama: 'Kulkas 3 Pintu', qty: 1 },
-  { nama: 'Freezer', qty: 2 },
+  { nama: 'Freezer', kapasitas: '700 ltr', qty: 1 },
+  { nama: 'Freezer', kapasitas: '300 ltr', qty: 2 },
+  { nama: 'Freezer', kapasitas: '210 ltr', qty: 3 },
 ];
 
 const STRUKTUR = [
@@ -120,10 +123,11 @@ export default function TentangPage() {
 
             <FadeUp delay={0.15}>
               <p className="mt-6 text-base leading-relaxed text-brand-text-muted">
-                Lebih dari satu dekade kemudian, pempek kami telah hadir di
-                Diamond Supermarket, JC Supermarket, 212 Mart, Indomaret, dan
-                TOP 100 — sekaligus dapat dikirim frozen ke seluruh Indonesia
-                untuk para perantau Sumsel yang merindukan rasa rumah.
+                Lebih dari satu dekade kemudian, pempek frozen kami telah hadir
+                di <strong className="text-brand-text">12 outlet supermarket di Batam</strong>{' '}
+                — TOP 100, JC (Jodoh Centre), Hypermart, Diamond, Gogo, dan
+                Indogrosir — sekaligus dapat dikirim frozen via Paxel untuk para
+                perantau Sumsel yang merindukan rasa rumah.
               </p>
             </FadeUp>
 
@@ -137,6 +141,84 @@ export default function TentangPage() {
               </p>
             </FadeUp>
           </div>
+        </div>
+      </section>
+
+      {/* DISTRIBUSI — outlet locations */}
+      <section className="bg-brand-bg-soft">
+        <div className="container section-pad">
+          <FadeUp>
+            <div className="mb-12 grid items-end gap-6 md:grid-cols-12">
+              <div className="md:col-span-7">
+                <div className="flex items-center gap-3">
+                  <span className="hairline-short !mx-0 !w-10" />
+                  <span className="eyebrow">Tempat Beli</span>
+                </div>
+                <h2 className="mt-6 font-display text-4xl font-bold tracking-tight-display text-brand-text md:text-5xl lg:text-6xl">
+                  {RETAIL_OUTLETS.length} outlet di Batam,
+                  <br />
+                  <span className="text-brand-text-muted">satu rasa autentik.</span>
+                </h2>
+              </div>
+              <div className="md:col-span-5">
+                <p className="text-base leading-relaxed text-brand-text-muted">
+                  Pempek frozen kami tersedia di jaringan supermarket pilihan di
+                  Batam. Untuk pelanggan luar kota, kami melayani pengiriman
+                  frozen via Paxel.
+                </p>
+              </div>
+            </div>
+          </FadeUp>
+
+          <StaggerList
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            staggerDelay={0.08}
+          >
+            {OUTLETS_BY_CHAIN.map((group) => {
+              const isOwn = group.chain.startsWith('Teras');
+              return (
+                <StaggerItem key={group.chain}>
+                  <div
+                    className={`h-full rounded-2xl border p-6 ${
+                      isOwn
+                        ? 'border-brand-accent bg-brand-accent/10'
+                        : 'border-brand-border bg-brand-surface'
+                    }`}
+                  >
+                    <div className="flex items-baseline justify-between gap-3 border-b border-brand-border pb-4">
+                      <h3 className="font-display text-xl font-semibold text-brand-text md:text-2xl">
+                        {group.chain}
+                      </h3>
+                      <span className="font-display text-sm font-medium text-brand-accent">
+                        {group.lokasi.length} outlet
+                      </span>
+                    </div>
+                    <ul className="mt-4 space-y-2.5">
+                      {group.lokasi.map((l) => (
+                        <li
+                          key={l}
+                          className="flex items-start gap-2.5 text-sm leading-snug text-brand-text-muted"
+                        >
+                          <span
+                            className="mt-1.5 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-brand-accent"
+                            aria-hidden="true"
+                          />
+                          <span>{l}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerList>
+
+          <FadeUp delay={0.2}>
+            <p className="mt-10 text-center text-sm text-brand-text-muted">
+              Daftar dapat berubah sewaktu-waktu. Hubungi kami via WhatsApp
+              untuk ketersediaan harian.
+            </p>
+          </FadeUp>
         </div>
       </section>
 
@@ -254,50 +336,6 @@ export default function TentangPage() {
             </div>
           </div>
         </ParallaxFade>
-      </section>
-
-      {/* ARSIP HARGA LAMA */}
-      <section className="bg-brand-bg-soft">
-        <div className="container section-pad">
-          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-            <div className="md:col-span-5">
-              <FadeUp>
-                <div className="flex items-center gap-3">
-                  <span className="hairline-short !mx-0 !w-10" />
-                  <span className="eyebrow">Arsip</span>
-                </div>
-                <h2 className="mt-6 font-display text-4xl font-bold tracking-tight-display text-brand-text md:text-5xl">
-                  Daftar harga lama, 2020.
-                </h2>
-                <p className="mt-6 text-base leading-relaxed text-brand-text-muted">
-                  Versi lama dari company profile kami — saat itu harga
-                  weight-based. <strong>Sudah tidak berlaku.</strong> Untuk
-                  harga terbaru per bungkus, silakan kunjungi{' '}
-                  <Link
-                    href="/produk"
-                    className="font-semibold text-brand-primary underline-offset-4 hover:underline"
-                  >
-                    halaman Produk
-                  </Link>
-                  .
-                </p>
-              </FadeUp>
-            </div>
-            <div className="md:col-span-7">
-              <FadeUp>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-brand-surface shadow-lg">
-                  <Image
-                    src="/image/slide-05-daftar-produk-harga.jpeg"
-                    alt="Daftar harga lama Pempek 788 Mang Jai (2020, weight-based, sudah tidak berlaku)"
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-contain p-4"
-                  />
-                </div>
-              </FadeUp>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* CTA */}

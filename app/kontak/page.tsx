@@ -146,7 +146,7 @@ export default function KontakPage() {
                   <strong className="font-display text-lg text-brand-text">Luar Batam</strong>
                   <br />
                   <span className="text-brand-text-muted">
-                    Ekspedisi frozen seluruh Indonesia (JNE Yes, J&amp;T Frozen)
+                    Ekspedisi frozen seluruh Indonesia via Paxel
                   </span>
                 </p>
               </div>

@@ -3,14 +3,16 @@ import Link from 'next/link';
 import { PRODUCTS } from '@/data/products';
 import { CERTIFICATIONS } from '@/data/certifications';
 import { RETAIL_PARTNERS } from '@/data/retail';
+import { TESTIMONI_HIGHLIGHTS } from '@/data/testimoni';
 import { BRAND, KONTAK } from '@/lib/constants';
 import { ProductCard } from '@/components/ProductCard';
 import { HomepageJsonLd } from '@/components/JsonLd';
+import { TestimoniGrid } from '@/components/TestimoniGrid';
 import { buildSimpleWaUrl } from '@/lib/whatsapp';
 import { FadeUp, RevealWords, ParallaxFade } from '@/components/motion';
 
 const BEST_SELLERS = PRODUCTS.filter((p) =>
-  ['pempek-kapal-selam', 'pempek-lenjer', 'pempek-adaan', 'pempek-kulit'].includes(p.id)
+  p.tags?.includes('Best Seller')
 );
 
 const VALUES = [
@@ -26,13 +28,13 @@ const VALUES = [
   },
   {
     no: '03',
-    judul: 'Tersertifikasi Halal',
-    desc: 'Halal MUI, BPOM, SNI, P-IRT — standar mutu nasional.',
+    judul: 'Tersertifikasi Lengkap',
+    desc: 'Halal, BPOM, P-IRT, GMP, SNI — standar mutu nasional.',
   },
   {
     no: '04',
     judul: 'Kirim Ke Seluruh Indonesia',
-    desc: 'Frozen shipping via JNE Yes & J&T Frozen.',
+    desc: 'Frozen shipping via Paxel.',
   },
 ];
 
@@ -202,7 +204,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-x-8">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 md:gap-x-10">
           {BEST_SELLERS.map((p, i) => (
             <ProductCard key={p.id} product={p} index={i} />
           ))}
@@ -328,6 +330,60 @@ export default function HomePage() {
             </Link>
           </p>
         </FadeUp>
+      </section>
+
+      {/* ===== TESTIMONI ===== */}
+      <section className="bg-brand-bg-soft">
+        <div className="container section-pad">
+          <FadeUp>
+            <div className="mb-14 grid items-end gap-6 md:grid-cols-12">
+              <div className="md:col-span-7">
+                <div className="flex items-center gap-3">
+                  <span className="hairline-short !mx-0 !w-10" />
+                  <span className="eyebrow">Suara Pelanggan & Media</span>
+                </div>
+                <h2 className="mt-6 font-display text-4xl font-bold tracking-tight-display text-brand-text md:text-5xl lg:text-6xl">
+                  Kata mereka
+                  <br />
+                  <span className="display-italic text-brand-text-muted">tentang kami.</span>
+                </h2>
+              </div>
+              <div className="md:col-span-5">
+                <p className="text-base leading-relaxed text-brand-text-muted">
+                  Dari liputan majalah F&amp;B hingga story Instagram pelanggan
+                  setia — beberapa cerita yang membuat kami terus berkembang.
+                </p>
+              </div>
+            </div>
+          </FadeUp>
+
+          <TestimoniGrid items={TESTIMONI_HIGHLIGHTS} columns={4} />
+
+          <FadeUp delay={0.2}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/testimoni"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-primary hover:gap-3"
+              >
+                Lihat semua testimoni
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </div>
+          </FadeUp>
+        </div>
       </section>
 
       {/* ===== DISTRIBUSI ===== */}

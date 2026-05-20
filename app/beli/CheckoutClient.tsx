@@ -295,7 +295,7 @@ export function CheckoutClient() {
                 <li>Pesan otomatis terisi di WhatsApp Anda</li>
                 <li>Kirim — kami respons untuk ongkir &amp; pembayaran</li>
                 <li>
-                  Pengiriman: Batam (lokal) atau luar Batam (frozen JNE / J&amp;T)
+                  Pengiriman: Batam (lokal) atau luar Batam (frozen via Paxel)
                 </li>
               </ol>
             </div>

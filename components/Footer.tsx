@@ -116,6 +116,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/testimoni" className="hover:text-brand-accent">
+                  Testimoni
+                </Link>
+              </li>
+              <li>
                 <Link href="/legalitas" className="hover:text-brand-accent">
                   Legalitas
                 </Link>

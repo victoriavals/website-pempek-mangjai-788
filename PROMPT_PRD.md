@@ -22,15 +22,15 @@ Anda adalah **Senior Product Manager** dengan pengalaman membangun website compa
 - **Visi-Misi:** Melestarikan kuliner dan budaya Nusantara — khususnya kuliner khas Sumatera Selatan. Menyajikan kuliner bergizi, sehat, dan dapat dikonsumsi oleh anak-anak sampai orang tua.
 - **Sertifikasi:** Halal MUI No. **04030021380616**, BPOM RI MD **243229017042**, P-IRT **2022171010690-23** dan **2062171020620-23**, SIUMK **IUMK/045/BK/XII/2017**, NIB **0220003690831**, SNI **1002991042023**, GMP Certified, "Batam Poenya", "Bangga Buatan Indonesia"
 - **Kapasitas produksi:** ~1000 pcs/hari (≈100 pack) dengan 4 staf
-- **Distribusi retail:** Diamond Supermarket, JC Supermarket, 212 Mart, Indomaret, TOP 100 Supermarket (catatan: tidak ada file logo PNG distributor; tampilkan sebagai **text chip / styled badge**, bukan grid logo)
+- **Distribusi retail:** 12 outlet supermarket di Batam across 6 chains — **TOP 100** (Grand Batam Mall, Plaza Tanjung Uncang, Plaza Jalan Bakal–Anggrek Mas, Tembesi), **JC/Jodoh Centre** (One Batam Mall, BCS Mall), **Hypermart** (Nagoya Hill), **Diamond** (DC Mall), **Gogo** (Botanis Mall 2, Sei Panas–Bengkong), **Indogrosir** (Muka Kuning) — plus outlet resmi **Teras Mang Jai 788** di Plamo Garden. Catatan: tidak ada file logo PNG distributor; tampilkan sebagai **text chip / styled card**, bukan grid logo.
 - **Outlet fisik:** **Teras Mang Jai 788** (Grand Opening 10 September 2023) di alamat yang sama — dine-in pempek + menu pendamping (Pindang Daging) + minuman. **Jam buka: Senin–Minggu, 09:30–16:30 WIB.**
-- **Cakupan pengiriman:** Area Batam (delivery lokal / pickup) + ekspedisi frozen ke seluruh Indonesia (JNE Yes, J&T Frozen, dll. — metode dikonfirmasi via WA per pesanan).
+- **Cakupan pengiriman:** Area Batam (delivery lokal / pickup) + ekspedisi frozen ke seluruh Indonesia via **Paxel**.
 - **Status sertifikat Halal MUI:** **aktif** (sudah diperbarui pasca-2022). Boleh klaim "Tersertifikasi Halal MUI" tanpa caveat.
 - **Brand kembar di aset:** Eza Food (logo terpisah; **JANGAN** dicampur ke branding Mang Jai 788 tanpa konfirmasi)
 
 ### Katalog Produk & Harga — TERBARU (per 2026, override Slide 5)
 
-> **Penting:** harga di `image/slide-05-daftar-produk-harga.jpeg` sudah **tidak berlaku**. Gunakan daftar di bawah sebagai sumber kebenaran. Slide 5 boleh tetap ditampilkan sebagai konteks historis di halaman "Tentang" tapi **jangan dipakai sebagai sumber harga**.
+> **Penting:** harga di `image/slide-05-daftar-produk-harga.jpeg` sudah **tidak berlaku**. Gunakan daftar di bawah sebagai sumber kebenaran. **Slide 5 tidak dirender di UI manapun** — file disimpan hanya sebagai arsip lokal.
 >
 > Skema harga baru adalah **count-based** (per jumlah potong dalam satu bungkus), bukan lagi weight-based. Kemasan default berisi **10 pcs/bungkus** untuk varian tenggiri standar, dengan beberapa SKU pengecualian.
 

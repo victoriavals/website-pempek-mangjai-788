@@ -43,7 +43,13 @@ No tests configured yet (out of MVP scope).
   - **a11y**: skip-to-content link (`.skip-link` in `app/globals.css`, slides in on `:focus-visible`), global `:focus-visible` ring using `theme('colors.brand.primary')`, `prefers-reduced-motion` honored. Skip link targets `<main id="main">` in `app/layout.tsx`.
   - **Resilience**: `app/error.tsx` global error boundary with retry + WA fallback, `app/not-found.tsx` custom 404 page (marked `robots: { index: false }`).
   - **Site URL**: `SITE_URL` constant in `lib/constants.ts` reads `NEXT_PUBLIC_SITE_URL` → `VERCEL_URL` → default. Used by sitemap, robots, JSON-LD, OG tags.
-- **Sprint 5 ✅** (current state): **total UI/UX redesign** to Brightland-inspired editorial aesthetic. Changes:
+- **Sprint 5.1 ✅** (current state): **Testimoni feature** — homepage highlight section (4 picks) + dedicated `/testimoni` page with **19 testimoni** grouped by source (press, instagram, **tiktok**, facebook, whatsapp).
+  - **Multi-media support**: `TestimoniMedia` discriminated union with 5 types — `image`, `video` (self-host MP4), `youtube`, `tiktok`, `instagram` (embeds via iframe, no SDK needed). Cards show source badge + play button overlay for video-like media; modal lightbox renders appropriate player.
+  - Data: `data/testimoni.ts` (typed `Testimoni[]` with `media`, `source`, `platform`, `author`, `excerpt`, `fullQuote`, `highlight`). Sources: 2 press, 3 instagram, 8 tiktok (@mangjai788channel), 2 facebook, 4 whatsapp.
+  - Components: `TestimoniCard` (portrait 9:16 with source badge + dark gradient caption) + `TestimoniGrid` (client, native `<dialog>` lightbox with media+quote two-column layout, "Buka di TikTok" external link for TikTok entries)
+  - Files: 11 image testimoni live in `public/image/testimoni/` with semantic slugs (`press-*`, `ig-*`, `fb-*`, `wa-*`); video testimoni use TikTok iframe embed (`https://www.tiktok.com/embed/v2/{videoId}`) — no local files.
+  - Nav: "Testimoni" added to header nav (between Teras & Legalitas) + footer + sitemap
+- **Sprint 5 ✅**: **total UI/UX redesign** to Brightland-inspired editorial aesthetic. Changes:
   - **Design tokens**: new color palette (cream/gold/forest/brick) in `tailwind.config.ts`
   - **Typography**: added Fraunces variable serif as `font-display`; Plus Jakarta Sans + Inter retained
   - **Motion**: added `framer-motion` dep + `components/motion.tsx` primitives (`FadeUp`, `RevealWords`, `StaggerList`, `ParallaxFade`)
@@ -125,9 +131,9 @@ These are first-party facts extracted from the `slide-01-*` through `slide-13-*`
 - **Social:** Instagram @mangjaipempek788, Facebook `mangjai788` / `mang jai pempek`, YouTube `mangjai788channel`, TikTok `mangjai788channel`
 - **Certifications:** Halal MUI (No. 04030021380616 — **status active, renewed post-2022**), BPOM RI MD 243229017042, P-IRT 2022171010690-23 / 2062171020620-23, SIUMK IUMK/045/BK/XII/2017, NIB 0220003690831, SNI 1002991042023, GMP Certified, "Batam Poenya", "Bangga Buatan Indonesia"
 - **Production capacity:** ~1000 pcs/day (~100 packs) with 4 staff
-- **Retail distribution:** Diamond Supermarket, JC Supermarket, 212 Mart, Indomaret, TOP 100 Supermarket (no distributor logo files available — render as text chips)
+- **Retail distribution:** 12 outlet supermarket di Batam across 6 chains — TOP 100 (×4 lokasi), JC/Jodoh Centre (×2), Hypermart, Diamond, Gogo (×2), Indogrosir + outlet sendiri Teras Mang Jai 788. Full list in [data/retail.ts](data/retail.ts) (`RETAIL_OUTLETS`). No distributor logo files available — render as text chips/cards.
 - **Physical outlet:** Teras Mang Jai 788 (grand-opened 10 September 2023, same Plamo Garden address) — dine-in pempek + drink menu. **Operating hours: Senin–Minggu, 09:30–16:30 WIB.**
-- **Shipping coverage:** Batam (local delivery / pickup) + frozen shipping nationwide (JNE Yes, J&T Frozen — method confirmed per order via WA)
+- **Shipping coverage:** Batam (local delivery / pickup) + frozen shipping nationwide via **Paxel**
 - **Sister brand visible in assets:** Eza Food (separate logo file)
 
 ### Product catalog with prices (current, count-based — supersedes Slide 5)
@@ -154,7 +160,7 @@ Every file lives in [image/](image/). Categories below match the filename prefix
 - `slide-02-tentang-pendiri-visi-misi.jpeg` — founder bios, visi-misi, certifications list.
 - `slide-03-struktur-organisasi-kapasitas.jpeg` — 4-person org chart + 1000 pcs/day capacity claim.
 - `slide-04-mesin-produksi-pemasaran.jpeg` — equipment list + retail-channel list.
-- `slide-05-daftar-produk-harga.jpeg` — **historical price list (weight-based, no longer valid)**. Live prices are count-based — see "Product catalog with prices" section above. Slide can still be shown as historical context on /tentang with a disclaimer.
+- `slide-05-daftar-produk-harga.jpeg` — **historical price list (weight-based, no longer valid)**. Live prices are count-based — see "Product catalog with prices" section above. **Not rendered anywhere in the live site** (owner removed the archive section from /tentang in Sprint 5). File kept in `public/image/` for archival purposes only.
 - `slide-06-legalitas-siumk-2017.jpeg` — SIUMK 2017. **Contains owner's personal NIK — file is gitignored, crop/blur before publishing.**
 - `slide-07-legalitas-nib-2020.jpeg` — NIB 0220003690831 issued 3 Juni 2020.
 - `slide-08-legalitas-halal-mui.jpeg` — Halal MUI decree (No. 04030021380616). Printed validity runs to 25 Agustus 2022 but **owner has confirmed the certification was renewed post-2022 and is currently active** — safe to claim active status in copywriting.

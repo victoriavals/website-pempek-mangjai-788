@@ -12,6 +12,7 @@ const ROUTES: Array<{
   { path: '/tentang', changeFrequency: 'yearly', priority: 0.7 },
   { path: '/hampers', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/teras', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/testimoni', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/legalitas', changeFrequency: 'yearly', priority: 0.5 },
   { path: '/kontak', changeFrequency: 'yearly', priority: 0.7 },
 ];

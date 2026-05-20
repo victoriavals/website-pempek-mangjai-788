@@ -161,8 +161,8 @@ MVP mencakup 8 halaman, satu fitur inti (cart-to-WhatsApp dengan state `localSto
 ┌─────────────────────────────────────────────────┐
 │ Distribusi Retail (text-only chip)              │
 │ "Tersedia juga di:"                              │
-│ [Diamond Supermarket] [JC Supermarket]          │
-│ [212 Mart] [Indomaret] [TOP 100 Supermarket]    │
+│ [TOP 100] [JC] [Hypermart] [Diamond]            │
+│ [Gogo] [Indogrosir]  · 12 outlet total          │
 └─────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────┐
@@ -506,8 +506,8 @@ Setiap kartu: ikon SVG + nama + nomor + tahun
 "Produk kami juga tersedia di:"
 Text chip 5 retail (tanpa logo, karena file logo distributor
 belum tersedia — gunakan styled text badge dengan border):
-Diamond Supermarket · JC Supermarket · 212 Mart ·
-Indomaret · TOP 100 Supermarket
+TOP 100 · JC (Jodoh Centre) · Hypermart · Diamond ·
+Gogo · Indogrosir  (12 outlet total di Batam)
 ```
 
 **Catatan implementasi**: scan asli sertifikat **harus disimpan ulang setelah diedit** (NIK di-blur/di-crop). Beri suffix `-redacted` pada file hasil redaksi, mis. `slide-06-legalitas-siumk-2017-redacted.jpeg`. Jangan publish file original di production.
@@ -538,7 +538,7 @@ Senin – Minggu: 09:30 – 16:30 WIB
 
 [Section "Pengiriman"]
 🛵 Batam: delivery dalam kota & pickup di outlet
-📦 Luar Batam: ekspedisi frozen (JNE Yes, J&T Frozen, dll)
+📦 Luar Batam: ekspedisi frozen via Paxel
                 konfirmasi metode & ongkir via WA
 
 [Section "Nomor WA Cadangan"]

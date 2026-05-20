@@ -142,7 +142,7 @@ export const PRODUCTS: Product[] = [
     deskripsi:
       'Paket mix berbagai varian pempek dari ikan laut pilihan. Cocok untuk yang ingin coba semua jenis sekaligus.',
     gambar: '/image/pack-pempek-campur.jpeg',
-    tags: ['Hubungi Kami', 'Halal'],
+    tags: ['Best Seller', 'Hubungi Kami', 'Halal'],
   },
   {
     id: 'tekwan-ikan',
@@ -155,7 +155,7 @@ export const PRODUCTS: Product[] = [
     deskripsi:
       'Bola-bola ikan tenggiri dalam kuah kaldu udang gurih, dengan jamur kuping dan bihun. Sajian sup khas Palembang.',
     gambar: '/image/pack-tekwan-ikan.jpeg',
-    tags: ['Hubungi Kami', 'Halal'],
+    tags: ['Best Seller', 'Hubungi Kami', 'Halal'],
   },
   {
     id: 'kue-bawang',

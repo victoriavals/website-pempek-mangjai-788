@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: '/tentang', label: 'Tentang' },
   { href: '/hampers', label: 'Hampers' },
   { href: '/teras', label: 'Teras' },
+  { href: '/testimoni', label: 'Testimoni' },
   { href: '/legalitas', label: 'Legalitas' },
   { href: '/kontak', label: 'Kontak' },
 ];
