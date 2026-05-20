@@ -1,5 +1,5 @@
 import type { CartItem, Product } from '@/data/types';
-import { getProductById } from '@/data/products';
+import { getProductByIdSync } from '@/data/products';
 import { KONTAK } from './constants';
 import { formatRupiahPlain } from './format';
 
@@ -9,31 +9,60 @@ interface ResolvedItem {
   subtotal: number | null;
 }
 
-export function resolveCart(items: CartItem[]): ResolvedItem[] {
+// Lookup interface — passed in by callers that have live (server-fetched)
+// products. Falls back to DEFAULT_INVENTORY via getProductByIdSync when omitted
+// (e.g. for safety in legacy code paths).
+export type ProductLookup =
+  | Map<string, Product>
+  | Record<string, Product>
+  | undefined;
+
+function lookup(id: string, products: ProductLookup): Product | undefined {
+  if (!products) return getProductByIdSync(id);
+  if (products instanceof Map) return products.get(id);
+  return products[id];
+}
+
+export function resolveCart(
+  items: CartItem[],
+  products?: ProductLookup
+): ResolvedItem[] {
   return items
     .map((item) => {
-      const product = getProductById(item.productId);
+      const product = lookup(item.productId, products);
       if (!product) return null;
       const subtotal =
-        product.harga_per_pack === null ? null : product.harga_per_pack * item.quantity;
+        product.harga_per_pack === null
+          ? null
+          : product.harga_per_pack * item.quantity;
       return { product, qty: item.quantity, subtotal };
     })
     .filter((x): x is ResolvedItem => x !== null);
 }
 
-export function calcSubtotal(items: CartItem[]): number {
-  return resolveCart(items).reduce(
+export function calcSubtotal(
+  items: CartItem[],
+  products?: ProductLookup
+): number {
+  return resolveCart(items, products).reduce(
     (sum, it) => sum + (it.subtotal ?? 0),
     0
   );
 }
 
-export function countUnpriced(items: CartItem[]): number {
-  return resolveCart(items).filter((it) => it.subtotal === null).length;
+export function countUnpriced(
+  items: CartItem[],
+  products?: ProductLookup
+): number {
+  return resolveCart(items, products).filter((it) => it.subtotal === null).length;
 }
 
-export function buildWhatsAppMessage(items: CartItem[], note?: string): string {
-  const resolved = resolveCart(items);
+export function buildWhatsAppMessage(
+  items: CartItem[],
+  note?: string,
+  products?: ProductLookup
+): string {
+  const resolved = resolveCart(items, products);
   if (resolved.length === 0) {
     return `Halo Pempek 788 Mang Jai 👋\nSaya ingin bertanya tentang produk Anda. Terima kasih!`;
   }
@@ -58,8 +87,8 @@ export function buildWhatsAppMessage(items: CartItem[], note?: string): string {
     }
   });
 
-  const subtotal = calcSubtotal(items);
-  const unpriced = countUnpriced(items);
+  const subtotal = calcSubtotal(items, products);
+  const unpriced = countUnpriced(items, products);
   lines.push('');
   if (subtotal > 0 && unpriced > 0) {
     lines.push(
