@@ -1,0 +1,14 @@
+id,isi_per_pack,satuan_label,harga_per_pack,stock_qty
+pempek-kapal-selam,2,2 pcs/bungkus,50000,24
+pempek-lenjer,10,10 pcs/bungkus,50000,30
+pempek-telur,10,10 pcs/bungkus,50000,18
+pempek-adaan,10,10 pcs/bungkus,50000,25
+pempek-keriting,10,10 pcs/bungkus,50000,12
+pempek-pistel,10,10 pcs/bungkus,50000,8
+pempek-kulit,10,10 pcs/bungkus,50000,15
+pempek-mozzarella,10,10 pcs/bungkus,50000,20
+pempek-panggang,6,6 pcs/bungkus,40000,10
+pempek-dos,10,10 pcs/bungkus,25000,40
+pempek-campur,,Paket variasi,,
+tekwan-ikan,,Sup ikan kuah kaldu,,
+kue-bawang,,Snack renyah,,
