@@ -10,6 +10,16 @@ footer situs (sumber: `lib/version.ts`). Format mengikuti
 
 ---
 
+## [1.1.1] — 2026-05-20
+
+### Tambah
+- **Promo voucher diskon 10%** di CTA halaman `/testimoni` — pelanggan yang
+  posting testimoni & tag @mangjaipempek788 di Instagram/Facebook dapat voucher
+  diskon 10% untuk pembelian berikutnya (klaim dengan menunjukkan postingan saat
+  pesan via WhatsApp). Tombol WhatsApp kini pre-fill pesan klaim voucher.
+
+---
+
 ## [1.1.0] — 2026-05-20
 
 ### Tambah
