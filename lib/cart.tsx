@@ -11,7 +11,10 @@ import {
   type ReactNode,
 } from 'react';
 import type { Cart, CartItem } from '@/data/types';
-import { getProductById } from '@/data/products';
+// Cart runs client-side; we can't await live Sheets data on hydration.
+// `getProductByIdSync` validates productIds against DEFAULT_INVENTORY so that
+// removed-but-still-listed products won't crash the cart on first load.
+import { getProductByIdSync } from '@/data/products';
 import { CART_STORAGE_KEY } from './constants';
 
 const initialCart: Cart = { items: [], updatedAt: Date.now() };
@@ -92,7 +95,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
               typeof i?.productId === 'string' &&
               typeof i?.quantity === 'number' &&
               i.quantity > 0 &&
-              !!getProductById(i.productId)
+              !!getProductByIdSync(i.productId)
           );
           dispatch({
             type: 'HYDRATE',
@@ -116,7 +119,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cart, hydrated]);
 
   const addItem = useCallback((id: string) => {
-    if (!getProductById(id)) return;
+    if (!getProductByIdSync(id)) return;
     dispatch({ type: 'ADD', productId: id });
   }, []);
   const removeItem = useCallback(
