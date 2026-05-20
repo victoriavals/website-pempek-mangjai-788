@@ -8,5 +8,5 @@
 //
 // Keep `package.json` "version" in sync when bumping.
 
-export const APP_VERSION = '1.1.0';
+export const APP_VERSION = '1.1.1';
 export const APP_VERSION_DATE = '2026-05-20';
