@@ -16,7 +16,7 @@ export function HomepageJsonLd() {
     description:
       'Pempek ikan tenggiri tradisional Sumatera Selatan, diproduksi di Batam sejak 2013. Halal MUI, BPOM, SNI. Pengiriman frozen seluruh Indonesia.',
     image: `${SITE_URL}/image/display-semua-produk-mang-jai.jpeg`,
-    logo: `${SITE_URL}/image/logo-mang-jai-788.jpeg`,
+    logo: `${SITE_URL}/image/logo-mang-jai-788.png`,
     url: SITE_URL,
     telephone: KONTAK.waUtamaDisplay,
     email: KONTAK.email,
