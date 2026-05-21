@@ -153,3 +153,17 @@ export function buildTerasReservationWaUrl(): string {
   ].join('\n');
   return buildWhatsAppUrl(msg);
 }
+
+// Pre-filled message for customers claiming the 10% testimoni voucher
+// (posted a testimoni + tagged us on Instagram/Facebook).
+export function buildTestimoniVoucherWaUrl(): string {
+  const msg = [
+    'Halo Pempek 788 Mang Jai 👋',
+    'Saya mau berbagi testimoni & klaim voucher diskon 10%.',
+    'Saya sudah tag @mangjaipempek788 di Instagram/Facebook.',
+    'Ini link/screenshot postingannya: [tempel di sini]',
+    '',
+    'Terima kasih!',
+  ].join('\n');
+  return buildWhatsAppUrl(msg);
+}
