@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import type { Testimoni, TestimoniMedia } from '@/data/testimoni';
+import { instagramEmbedSrc, instagramPermalink } from '@/data/testimoni';
 import { TestimoniCard } from './TestimoniCard';
 
 interface TestimoniGridProps {
@@ -166,19 +167,17 @@ function ModalMedia({
         />
       );
 
-    case 'instagram': {
-      const igPath = media.kind === 'reel' ? 'reel' : 'p';
+    case 'instagram':
       return (
         <iframe
           title={`Instagram ${platform}`}
-          src={`https://www.instagram.com/${igPath}/${media.postId}/embed/`}
+          src={instagramEmbedSrc(media.postId, media.kind)}
           allowFullScreen
           referrerPolicy="strict-origin-when-cross-origin"
           className="aspect-[9/14] w-full max-w-[440px] border-0"
           scrolling="no"
         />
       );
-    }
 
     case 'video':
       return (
@@ -227,8 +226,7 @@ function TikTokDirectLink({ media }: { media: TestimoniMedia }) {
 
 function InstagramDirectLink({ media }: { media: TestimoniMedia }) {
   if (media.type !== 'instagram') return null;
-  const path = media.kind === 'reel' ? 'reel' : 'p';
-  const url = `https://www.instagram.com/${path}/${media.postId}/`;
+  const url = instagramPermalink(media.postId, media.kind);
   return (
     <a
       href={url}
