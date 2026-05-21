@@ -78,6 +78,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  icons: {
+    icon: '/image/logo-mang-jai-788.png',
+    shortcut: '/image/logo-mang-jai-788.png',
+    apple: '/image/logo-mang-jai-788.png',
+  },
   robots: {
     index: true,
     follow: true,
