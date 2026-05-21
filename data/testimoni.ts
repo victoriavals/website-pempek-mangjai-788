@@ -350,3 +350,24 @@ export const SOURCE_LABELS: Record<TestimoniSource, string> = {
 
 // Selected for homepage highlight
 export const TESTIMONI_HIGHLIGHTS = TESTIMONI.filter((t) => t.highlight);
+
+// --- Instagram URL helpers (pure, unit-tested) ----------------------------
+// Reels use the /reel/ path, posts use /p/. Instagram serves an iframe-able
+// page at the `/embed/` suffix for both.
+type InstagramKind = 'post' | 'reel';
+
+export function instagramEmbedSrc(
+  postId: string,
+  kind: InstagramKind = 'post'
+): string {
+  const path = kind === 'reel' ? 'reel' : 'p';
+  return `https://www.instagram.com/${path}/${postId}/embed/`;
+}
+
+export function instagramPermalink(
+  postId: string,
+  kind: InstagramKind = 'post'
+): string {
+  const path = kind === 'reel' ? 'reel' : 'p';
+  return `https://www.instagram.com/${path}/${postId}/`;
+}
