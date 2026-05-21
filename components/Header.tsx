@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { BRAND } from '@/lib/constants';
@@ -38,15 +39,17 @@ export function Header() {
       <div className="container flex h-20 items-center justify-between gap-6">
         <Link
           href="/"
-          className="group flex items-center gap-3"
+          className="group inline-flex items-center"
           aria-label={BRAND.namaLengkap}
         >
-          <span className="font-display text-2xl font-bold leading-none tracking-tight-display text-brand-primary">
-            Mang Jai
-          </span>
-          <span className="flex h-7 items-center rounded-full bg-brand-accent/80 px-2 font-display text-xs font-bold text-brand-text">
-            788
-          </span>
+          <Image
+            src="/image/logo-mang-jai-788.png"
+            alt={BRAND.namaLengkap}
+            width={540}
+            height={337}
+            priority
+            className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         <nav
