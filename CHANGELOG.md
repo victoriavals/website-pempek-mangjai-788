@@ -10,6 +10,31 @@ footer situs (sumber: `lib/version.ts`). Format mengikuti
 
 ---
 
+## [1.1.3] — 2026-05-21
+
+### Ubah
+- **Refresh foto kemasan produk** — 12 dari 13 SKU pack di `/produk` pakai
+  foto baru (style seragam: latar tembok kuning + alas rumput sintetis,
+  sudut & pencahayaan konsisten). SKU yang diperbarui: Dos, Kulit, Pistel,
+  Adaan, Keriting, Telur, Lenjer, Campur, Mozzarella, Tekwan Ikan, Panggang,
+  Kapal Selam. Pack Kue Bawang masih pakai foto lama (belum ada penggantinya).
+
+---
+
+## [1.1.2] — 2026-05-21
+
+### Internal (tanpa perubahan tampilan)
+- **QA: Vitest + suite unit test** — 38 tes lulus (whatsapp builders, data
+  testimoni, helper URL Instagram, CSV parser sheet inventory). Jalankan
+  `npm test`.
+- **Refactor**: ekstrak `buildTestimoniVoucherWaUrl()` ke `lib/whatsapp.ts`
+  dan `instagramEmbedSrc()` + `instagramPermalink()` ke `data/testimoni.ts`
+  supaya URL builder bisa di-unit-test (perilaku identik dengan v1.1.1).
+- **Dokumentasi**: `TESTING.md` berisi test case manual UI (modal, voucher box,
+  regresi, a11y).
+
+---
+
 ## [1.1.1] — 2026-05-20
 
 ### Tambah
