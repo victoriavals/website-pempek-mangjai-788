@@ -10,6 +10,33 @@ footer situs (sumber: `lib/version.ts`). Format mengikuti
 
 ---
 
+## [1.1.5] — 2026-05-21
+
+### Ubah
+- **Logo Mang Jai 788 jadi PNG transparan** — background hitam pada
+  `logo-mang-jai-788.jpeg` di-strip via alpha thresholding (max RGB < 30 →
+  transparan, 30-60 → alpha feathering anti-halo), lalu auto-crop ke bounding
+  box konten (540×540 → **540×337**). File JPEG lama dihapus.
+- Header kiri-atas: ukuran disesuaikan ke `h-12 w-auto` (rounded-corner dibuang
+  karena tidak perlu lagi). Logo kini tampil ~77×48 dengan aspek wordmark asli.
+- Favicon + Open Graph logo + Schema.org `Organization.logo` semua diperbarui
+  ke `.png`.
+
+---
+
+## [1.1.4] — 2026-05-21
+
+### Ubah
+- **Logo Mang Jai 788 di kiri-atas header** — menggantikan wordmark teks
+  "Mang Jai" + badge "788" dengan gambar logo asli (`logo-mang-jai-788.jpeg`).
+  Tampil 48×48 dengan `rounded-lg` di seluruh halaman.
+
+### Tambah
+- **Favicon situs** — logo Mang Jai 788 kini jadi icon tab browser + apple-touch
+  icon (sebelumnya pakai default Next.js).
+
+---
+
 ## [1.1.3] — 2026-05-21
 
 ### Ubah
