@@ -7,7 +7,7 @@ import {
   type TestimoniSource,
 } from '@/data/testimoni';
 import { BRAND, KONTAK } from '@/lib/constants';
-import { buildSimpleWaUrl } from '@/lib/whatsapp';
+import { buildTestimoniVoucherWaUrl } from '@/lib/whatsapp';
 import { TestimoniGrid } from '@/components/TestimoniGrid';
 import { FadeUp } from '@/components/motion';
 
@@ -38,16 +38,7 @@ const ORDER: TestimoniSource[] = [
 ];
 
 export default function TestimoniPage() {
-  const voucherWaUrl = buildSimpleWaUrl(
-    [
-      'Halo Pempek 788 Mang Jai 👋',
-      'Saya mau berbagi testimoni & klaim voucher diskon 10%.',
-      'Saya sudah tag @mangjaipempek788 di Instagram/Facebook.',
-      'Ini link/screenshot postingannya: [tempel di sini]',
-      '',
-      'Terima kasih!',
-    ].join('\n')
-  );
+  const voucherWaUrl = buildTestimoniVoucherWaUrl();
 
   return (
     <>
